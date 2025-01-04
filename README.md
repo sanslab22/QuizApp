@@ -17,13 +17,13 @@ For testing purposes:
 Install dependencies:
 
 - Backend:
--   python3 -m venv env
--   pip install fastapi uvicorn sqlalchemy
+   - python3 -m venv env
+   - pip install fastapi uvicorn sqlalchemy
 
 - Frontend:
--   cd Frontend
--   npm install
--   npm install axios
+   - cd Frontend
+   - npm install
+   - npm install axios
 
 ## Technologies Used:
 
