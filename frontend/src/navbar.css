@@ -45,3 +45,12 @@ body {
 .nav li:hover {
     background-color: #6f8f9b;
 }
+
+.user-icon {
+    justify-content: center;
+    align-items: center;
+}
+
+.user-icon:hover {
+    background-color: #6f8f9b;
+}

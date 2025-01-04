@@ -3,12 +3,14 @@ import axios from 'axios'
 // import FlashcardList from "./components/FlashcardList";
 
 export default function Library() {
-    const [flashcards, setFlashcards] = useState([]);    
+    const [flashcards, setFlashcards] = useState([]);
 
     const [formData, setFormData] = useState({
         question_text: '',
         answer: ''
     })
+
+    const [showForm, setShowForm] = useState(false);
 
     // handle user input
     const handleFormChange = (e) => {
@@ -38,7 +40,7 @@ export default function Library() {
             // POST request to FastAPI to create a new question and choices
             const response = await axios.post('http://localhost:8000/questions/', newQuestion);
             console.log('Question created:', response.data);
-            
+
             // Optionally, fetch the latest questions
             fetchQuestions();
 
@@ -47,6 +49,8 @@ export default function Library() {
                 question_text: '',
                 answer: ''
             });
+
+            setShowForm(false);
 
         } catch (error) {
             console.error("Error creating flashcard:", error);
@@ -67,43 +71,58 @@ export default function Library() {
     useEffect(() => {
         fetchQuestions();
     }, []);
-    
-    
+
+
     return (
         <div>
-            <div className='title-spacing'> 
+            <div className='title-spacing'>
                 <h1 className='title'> Library </h1>
-                <button className="icon-btn add-btn"> {/* button from uiverse*/}
-                    <div className="add-icon"></div>
-                    <div className="btn-txt">Add Flashcard</div>
-                </button>
+                <div className='add-button'>
+                    <button className="icon-btn add-btn"
+                            onClick={ () => setShowForm((prevState) => (!prevState)) }> {/* button from uiverse*/}
+                        <div className="add-icon"></div>
+                        <div className="btn-txt">Add Flashcard</div>
+                    </button>
+                </div>
             </div>
-            {/* <FlashcardList flashcards={ flashcards } />         */}
-            <div className='forms-content'>
-                <form onSubmit={handleFormSubmit}>
-                    <div className='input-row'>
-                        <input
-                            type="text"
-                            id="question_text"
-                            value={formData.question_text}
-                            onChange={handleFormChange}
-                            placeholder="Enter a term"
-                            required
-                        />
-                    </div>
-                    <div className='input-row'>
-                        <input
-                            type="text"
-                            id="answer"
-                            value={formData.choice_text}
-                            onChange={handleFormChange}
-                            placeholder="Enter a definition"
-                            required
-                        />
-                    </div>
-                    <button className='submit-button' type="submit">Add Flashcard</button>
-                </form>
-            </div>
+            {/* <FlashcardList flashcards={ flashcards } /> */}
+
+            {showForm && (
+                <div className='forms-content'>
+                    <form onSubmit={handleFormSubmit}>
+                        <div className='input-row'>
+                            <input
+                                type="text"
+                                id="question_text"
+                                value={formData.question_text}
+                                onChange={handleFormChange}
+                                placeholder="Enter a term"
+                                required
+                            />
+                        </div>
+                        <div className='input-row'>
+                            <input
+                                type="text"
+                                id="answer"
+                                value={formData.choice_text}
+                                onChange={handleFormChange}
+                                placeholder="Enter a definition"
+                                required
+                            />
+                        </div>
+                        <div className='title-spacing'>
+                            <button className='submit-button' type="submit">Add Flashcard</button>
+                            <button
+                                type="button"
+                                className='cancel-button'
+                                onClick={() => setShowForm(false)}
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            )}
 
             {/* Display the flashcards */}
             <div className='title'>
@@ -125,5 +144,5 @@ export default function Library() {
                 )}
             </div>
         </div>
-    ) 
+    )
 }

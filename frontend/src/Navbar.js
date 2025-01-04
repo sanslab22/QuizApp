@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, useMatch, useResolvedPath} from "react-router-dom"
+import {ReactComponent as User} from './icons/user.svg'
+
 
 export default function Navbar() {
     return <nav className='nav'>
@@ -7,6 +9,7 @@ export default function Navbar() {
         <ul>
             <CustomLink to="/myFlashcards"> My Flashcards </CustomLink>
             <CustomLink to="/library"> Library </CustomLink>
+            <User className='user-icon'/>
         </ul>
     </nav>
 }
