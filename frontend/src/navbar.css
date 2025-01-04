@@ -20,6 +20,7 @@ body {
     font-size: 2rem;
     font-family: Impact, fantasy;
 }
+
 .nav ul {
     padding: 0;
     margin: 0;
@@ -49,6 +50,7 @@ body {
 .user-icon {
     justify-content: center;
     align-items: center;
+    height: 100%;
 }
 
 .user-icon:hover {
