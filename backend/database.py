@@ -6,11 +6,11 @@ USERNAME = 'postgres'
 PASSWORD = 'Aaaa1234!!'
 HOSTNAME = 'localhost'
 PORT = '5433'
-SCHEMA_NAME =  'QuizApplication'
+SCHEMA_NAME = 'QuizApplication'
 
-URL_DATABSE = f'postgresql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{SCHEMA_NAME}'
+URL_DATABASE = f'postgresql://{USERNAME}:{PASSWORD}@{HOSTNAME}:{PORT}/{SCHEMA_NAME}'
 
-engine = create_engine(URL_DATABSE)
+engine = create_engine(URL_DATABASE)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
